@@ -109,6 +109,10 @@ func (e errConfigurationInvalid) Errors() []error {
 	return e
 }
 
+func (e errConfigurationInvalid) Is(_ error) bool {
+	return false
+}
+
 // Is implements the utilerrors.Aggregate interface
 func (e errConfigurationInvalid) Is(target error) bool {
 	return e.visit(func(err error) bool {
