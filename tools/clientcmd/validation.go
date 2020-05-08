@@ -113,13 +113,6 @@ func (e errConfigurationInvalid) Is(_ error) bool {
 	return false
 }
 
-// Is implements the utilerrors.Aggregate interface
-func (e errConfigurationInvalid) Is(target error) bool {
-	return e.visit(func(err error) bool {
-		return errors.Is(err, target)
-	})
-}
-
 func (e errConfigurationInvalid) visit(f func(err error) bool) bool {
 	for _, err := range e {
 		switch err := err.(type) {
